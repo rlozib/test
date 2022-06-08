@@ -1,1 +1,496 @@
-test
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="WaffleStay" />
+    <meta name="description" content="와플스테이">
+    <link rel="icon" type="image/png" href="../public/images/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Document title -->
+    <title>와플스테이 일반 예약</title>
+
+    <!-- Stylesheets -->
+    <link href="../public/css/reset.css" rel="stylesheet">
+    <link href="../public/css/common.css" rel="stylesheet">
+    <link href="../public/css/headCountModal.css" rel="stylesheet">
+    <link href="../public/css/calendar.css" rel="stylesheet">
+    <link href="../public/css/reserve_style.css" rel="stylesheet">
+
+    <!-- swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Awsome Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <!-- body inner -->
+    <div class="body-inner">
+        <!-- header -->
+        <header id="header">
+        
+            <div class="container">
+                <!-- header-inner -->
+                <div class="header-inner">
+                    <!-- logo -->
+                    <div class="logo">
+                        <a href="reserve_index.html"><img src="../public/images/waffle_logo_notext.png" alt="와플로고"></a>
+                    </div>
+                    <!-- logo -->
+
+                    <!-- nav -->
+                    <nav class="mainMenu">
+                        <ul>
+                            <li><a href="../views/reserve_index.html">호텔예약</a></li>
+                            <li><a href="../views/longstay_index.html">장기숙박</a></li>
+                            <li><a href="https://gift.wafflestay.kr/index">숙박교환권</a></li>
+                            <li><a href="#c">로그인</a></li>
+                        </ul>
+                    </nav>
+                    <div class="ham">
+                        <span></span>
+                    </div>
+                    <div class="nav_bg"></div>
+                    <!-- nav -->
+                </div>
+                <!-- header-inner -->
+            </div>
+
+        </header>
+        <!-- header -->
+
+        <!--main-->
+        <main id="main">
+            <div class="container">
+                <!-- searchWrap -->
+                <div class="searchWrap">
+                    <!-- search-inner -->
+                    <div class="search-inner">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        <input id="searchBtn" type="search" class="searchBar" placeholder="목적지" autofocus />
+                        <button class="searchBtn">검색</button>
+                    </div>
+                    <!-- search-inner -->
+                </div>
+                <!-- searchWrap -->
+
+                <section id="chkIn">
+                    <!-- <div class="noRoomMsg">
+                        <p>선택하신 날짜에 익스피디아에서 예약 가능한 객실이 없습니다. 다른 날짜를 입력해 예약 가능 여부를 확인해 보세요.</p>
+                    </div> -->
+                    
+                    <!--formWrapper-->
+                    <div id="formWrapper">
+                                
+                        <form action="" method="GET" id="roomStateForm">
+                            
+                            <div class="roomStateWrap">
+                                
+                                <div class="formWrap grow1 chkBtn"> 
+                                    <div class="formInner">
+                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                        <label for="hotels-check-in" class="field-label">
+                                            <span>체크인</span>
+                                        </label>
+                                        <input id="hotels-check-in" name="startDate" class="input is-hidden" type="text"  placeholder="날짜선택" value="">
+                                        <button id="hotels-check-in-btn" class="hotelsChkInBtn" aria-label="체크인 2022년 7월 14일" data-stid="open-date-picker" >7월 14일</button>                  
+                                    </div>
+                                </div>
+
+                                <div class="formWrap grow1 chkBtn">
+                                    <div class="formInner"> 
+                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                        <label for="hotels-check-out" class="field-label">
+                                            <span>체크아웃</span>
+                                        </label>
+                                        <input id="hotels-check-out" name="endDate" class="input is-hidden" type="text" data-stid="input-date" aria-expanded="false"  placeholder="날짜선택" aria-required="false" aria-invalid="false" value="2022-07-16">
+                                        <button id="hotels-check-out-btn" class="hotelsChkOutBtn" aria-label="체크아웃 2022년 7월 14일" data-stid="open-date-picker">7월 14일</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="formWrap grow3">
+                                    <div class="formInner headCountBtn">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <label for="headCount" class="field-label">인원 수</label>
+                                        <input id="headCount" type="text" class="input is-hidden" placeholder="Placeholder" aria-required="false" aria-invalid="false" value="객실 1개, 2명">
+                                        <button id="headcount-btn">객실 1개, 2명</button>
+                                    </div>
+                                </div>
+
+                                <div class="formWrap grow1">
+                                    <div class="formInner">
+                                        <input type="button" class="submitBtn" value="예약 가능 여부 확인" />
+                                    </div>
+                                </div>
+                            </div>    
+                        </form>
+
+
+                        <!--calendar-->
+                        <div id="calendarWrap" data-backdrop="static">
+                            <div class="calendarInner">  
+                                <div class="calendar-month">
+                        
+                                    <div class="calendar calendar-first" id="calendar_first">
+                                    <div class="calendar_header">
+                                        <button class="switch-month switch-left">
+                                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                        </button>
+                                        <h2></h2>
+                                    </div>
+                                    <div class="calendar_weekdays"></div>
+                                    <div class="calendar_content"></div>
+                                    </div>
+                        
+                                </div>
+                                <div class="calendar-month">
+                        
+                                    <div class="calendar calendar-second" id="calendar_second">
+                                    <div class="calendar_header">
+                                        
+                                        <h2></h2>
+                                        <button class="switch-month switch-right">
+                                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <div class="calendar_weekdays"></div>
+                                    <div class="calendar_content"></div>
+                                    </div>            
+                        
+                                </div>
+                                <input type="button" class="submitBtn confirmBtn" value="예약 가능 여부 확인" />
+                            </div> <!-- End Row -->
+                                
+                        </div> <!-- End Calendar -->
+                        <!--calendar-->
+                    </div>
+                    <!--formWrapper-->
+                </section>
+
+                
+
+
+                <!-- hotelList -->
+                <section id="hotelWrap" class="hotelList">
+                    <div class="hotel-inner">
+                        <ul>
+                            <li id="hotel1" class="hotels">
+                                <a href="./reserve_detail.html">
+                                    <img src="../public/images/hotel1_1.jpg" alt="호텔이미지">
+                                    <div class="info">
+                                        <div class="info-left">
+                                            <div class="hotelName">에이드 바이 베스트웨스턴 청담</div>
+                                            <div class="hotelAddress">서울특별시 강남구 도산대로 216</div>
+
+                                            <div class="facWrap">
+                                                <ul>
+                                                    <li><svg class="uitk-icon uitk-icon-medium uitk-icon-default-theme" aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M9.82 11.64h.01a4.15 4.15 0 014.36 0h.01c.76.46 1.54.47 2.29 0l.41-.23L10.48 5C8.93 3.45 7.5 2.99 5 3v2.5c1.82-.01 2.89.39 4 1.5l1 1-3.25 3.25c.27.1.52.25.77.39.75.47 1.55.47 2.3 0z"></path><path fill-rule="evenodd" d="M21.98 16.5c-1.1 0-1.71-.37-2.16-.64h-.01a2.08 2.08 0 00-2.29 0 4.13 4.13 0 01-4.36 0h-.01a2.08 2.08 0 00-2.29 0 4.13 4.13 0 01-4.36 0h-.01a2.08 2.08 0 00-2.29 0l-.03.02c-.47.27-1.08.62-2.17.62v-2c.56 0 .78-.13 1.15-.36a4.13 4.13 0 014.36 0h.01c.76.46 1.54.47 2.29 0a4.13 4.13 0 014.36 0h.01c.76.46 1.54.47 2.29 0a4.13 4.13 0 014.36 0h.01c.36.22.6.36 1.14.36v2z" clip-rule="evenodd"></path><path d="M19.82 20.36c.45.27 1.07.64 2.18.64v-2a1.8 1.8 0 01-1.15-.36 4.13 4.13 0 00-4.36 0c-.75.47-1.53.46-2.29 0h-.01a4.15 4.15 0 00-4.36 0h-.01c-.75.47-1.55.47-2.3 0a4.15 4.15 0 00-4.36 0h-.01A1.8 1.8 0 012 19v2c1.1 0 1.72-.36 2.18-.63l.01-.01a2.07 2.07 0 012.3 0c1.39.83 2.97.82 4.36 0h.01a2.08 2.08 0 012.29 0h.01c1.38.83 2.95.83 4.34.01l.02-.01a2.08 2.08 0 012.29 0h.01zM19 5.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path></svg> <em>수영장</em></li>
+                                                    <li><svg class="uitk-icon uitk-icon-medium uitk-icon-default-theme" aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill-rule="evenodd" d="M1 9l2 2a12.73 12.73 0 0118 0l2-2A15.57 15.57 0 001 9zm8 8l3 3 3-3a4.24 4.24 0 00-6 0zm-2-2l-2-2a9.91 9.91 0 0114 0l-2 2a7.07 7.07 0 00-10 0z" clip-rule="evenodd"></path></svg><em>무료WiFi</em></li>
+                                                </ul>
+                                            </div>
+                                            <div class="notice">
+                                                <div class="refund">전액 환불 가능</div>
+                                                <div class="nowRez">지금 예약하고 현장 결제</div>
+                                                <div class="grade"><i>4.3</i>/5 훌룽함</div>
+                                                <div class="review">(이용후기 308개)</div>
+                                            </div>
+                                        </div>
+                                        <div class="info-right">
+                                            <div class="hotelPrice">₩128,864~</div>
+                                            <span class="stan2">객실당 1박 기준</span>
+                                            <span class="tax">세금 및 수수료 불포함</span>
+                                            <button class="detailBtn">상세보기</button>
+                                        </div>
+                                        
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- hotel1 -->
+
+                            <li id="hotel2" class="hotels">
+                                <a href="./reserve_detail.html">
+                                    <img src="../public/images/hotel1_2.jpg" alt="호텔이미지">
+                                    <div class="info">
+                                        <div class="info-left">
+                                            <div class="hotelName">에이드 바이 베스트웨스턴 청담</div>
+                                            <div class="hotelAddress">서울특별시 강남구 도산대로 216</div>
+
+                                            <div class="facWrap">
+                                                <ul>
+                                                    <li><svg class="uitk-icon uitk-icon-medium uitk-icon-default-theme" aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M9.82 11.64h.01a4.15 4.15 0 014.36 0h.01c.76.46 1.54.47 2.29 0l.41-.23L10.48 5C8.93 3.45 7.5 2.99 5 3v2.5c1.82-.01 2.89.39 4 1.5l1 1-3.25 3.25c.27.1.52.25.77.39.75.47 1.55.47 2.3 0z"></path><path fill-rule="evenodd" d="M21.98 16.5c-1.1 0-1.71-.37-2.16-.64h-.01a2.08 2.08 0 00-2.29 0 4.13 4.13 0 01-4.36 0h-.01a2.08 2.08 0 00-2.29 0 4.13 4.13 0 01-4.36 0h-.01a2.08 2.08 0 00-2.29 0l-.03.02c-.47.27-1.08.62-2.17.62v-2c.56 0 .78-.13 1.15-.36a4.13 4.13 0 014.36 0h.01c.76.46 1.54.47 2.29 0a4.13 4.13 0 014.36 0h.01c.76.46 1.54.47 2.29 0a4.13 4.13 0 014.36 0h.01c.36.22.6.36 1.14.36v2z" clip-rule="evenodd"></path><path d="M19.82 20.36c.45.27 1.07.64 2.18.64v-2a1.8 1.8 0 01-1.15-.36 4.13 4.13 0 00-4.36 0c-.75.47-1.53.46-2.29 0h-.01a4.15 4.15 0 00-4.36 0h-.01c-.75.47-1.55.47-2.3 0a4.15 4.15 0 00-4.36 0h-.01A1.8 1.8 0 012 19v2c1.1 0 1.72-.36 2.18-.63l.01-.01a2.07 2.07 0 012.3 0c1.39.83 2.97.82 4.36 0h.01a2.08 2.08 0 012.29 0h.01c1.38.83 2.95.83 4.34.01l.02-.01a2.08 2.08 0 012.29 0h.01zM19 5.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path></svg> <em>수영장</em></li>
+                                                    <li><svg class="uitk-icon uitk-icon-medium uitk-icon-default-theme" aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill-rule="evenodd" d="M1 9l2 2a12.73 12.73 0 0118 0l2-2A15.57 15.57 0 001 9zm8 8l3 3 3-3a4.24 4.24 0 00-6 0zm-2-2l-2-2a9.91 9.91 0 0114 0l-2 2a7.07 7.07 0 00-10 0z" clip-rule="evenodd"></path></svg><em>무료WiFi</em></li>
+                                                </ul>
+                                            </div>
+                                            <div class="notice">
+                                                <div class="refund">전액 환불 가능</div>
+                                                <div class="nowRez">지금 예약하고 현장 결제</div>
+                                                <div class="grade"><i>4.3</i>/5 훌룽함</div>
+                                                <div class="review">(이용후기 308개)</div>
+                                            </div>
+                                        </div>
+                                        <div class="info-right">
+                                            <div class="hotelPrice">₩128,864~</div>
+                                            <span class="stan2">객실당 1박 기준</span>
+                                            <span class="tax">세금 및 수수료 불포함</span>
+                                            <button class="detailBtn">상세보기</button>    
+                                        </div>
+                                        
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- hotel2 -->
+
+                            <li id="hotel3" class="hotels">
+                                <a href="./reserve_detail.html">
+                                    <img src="../public/images/hotel1_3.jpg" alt="호텔이미지">
+                                    <div class="info">
+                                        <div class="info-left">
+                                            <div class="hotelName">에이드 바이 베스트웨스턴 청담</div>
+                                            <div class="hotelAddress">서울특별시 강남구 도산대로 216</div>
+
+                                            <div class="facWrap">
+                                                <ul>
+                                                    <li><svg class="uitk-icon uitk-icon-medium uitk-icon-default-theme" aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M9.82 11.64h.01a4.15 4.15 0 014.36 0h.01c.76.46 1.54.47 2.29 0l.41-.23L10.48 5C8.93 3.45 7.5 2.99 5 3v2.5c1.82-.01 2.89.39 4 1.5l1 1-3.25 3.25c.27.1.52.25.77.39.75.47 1.55.47 2.3 0z"></path><path fill-rule="evenodd" d="M21.98 16.5c-1.1 0-1.71-.37-2.16-.64h-.01a2.08 2.08 0 00-2.29 0 4.13 4.13 0 01-4.36 0h-.01a2.08 2.08 0 00-2.29 0 4.13 4.13 0 01-4.36 0h-.01a2.08 2.08 0 00-2.29 0l-.03.02c-.47.27-1.08.62-2.17.62v-2c.56 0 .78-.13 1.15-.36a4.13 4.13 0 014.36 0h.01c.76.46 1.54.47 2.29 0a4.13 4.13 0 014.36 0h.01c.76.46 1.54.47 2.29 0a4.13 4.13 0 014.36 0h.01c.36.22.6.36 1.14.36v2z" clip-rule="evenodd"></path><path d="M19.82 20.36c.45.27 1.07.64 2.18.64v-2a1.8 1.8 0 01-1.15-.36 4.13 4.13 0 00-4.36 0c-.75.47-1.53.46-2.29 0h-.01a4.15 4.15 0 00-4.36 0h-.01c-.75.47-1.55.47-2.3 0a4.15 4.15 0 00-4.36 0h-.01A1.8 1.8 0 012 19v2c1.1 0 1.72-.36 2.18-.63l.01-.01a2.07 2.07 0 012.3 0c1.39.83 2.97.82 4.36 0h.01a2.08 2.08 0 012.29 0h.01c1.38.83 2.95.83 4.34.01l.02-.01a2.08 2.08 0 012.29 0h.01zM19 5.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path></svg> <em>수영장</em></li>
+                                                    <li><svg class="uitk-icon uitk-icon-medium uitk-icon-default-theme" aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill-rule="evenodd" d="M1 9l2 2a12.73 12.73 0 0118 0l2-2A15.57 15.57 0 001 9zm8 8l3 3 3-3a4.24 4.24 0 00-6 0zm-2-2l-2-2a9.91 9.91 0 0114 0l-2 2a7.07 7.07 0 00-10 0z" clip-rule="evenodd"></path></svg><em>무료WiFi</em></li>
+                                                </ul>
+                                            </div>
+                                            <div class="notice">
+                                                <div class="refund">전액 환불 가능</div>
+                                                <div class="nowRez">지금 예약하고 현장 결제</div>
+                                                <div class="grade"><i>4.3</i>/5 훌룽함</div>
+                                                <div class="review">(이용후기 308개)</div>
+                                            </div>
+                                        </div>
+                                        <div class="info-right">
+                                            <div class="hotelPrice">₩128,864~</div>
+                                            <span class="stan2">객실당 1박 기준</span>
+                                            <span class="tax">세금 및 수수료 불포함</span>
+                                            <button class="detailBtn">상세보기</button>    
+                                        </div>
+                                        
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- hotel3 -->
+
+                            <li id="hotel4" class="hotels">
+                                <a href="./reserve_detail.html">
+                                    <img src="../public/images/hotel1_4.jpg" alt="호텔이미지">
+                                    <div class="info">
+                                        <div class="info-left">
+                                            <div class="hotelName">에이드 바이 베스트웨스턴 청담</div>
+                                            <div class="hotelAddress">서울특별시 강남구 도산대로 216</div>
+
+                                            <div class="facWrap">
+                                                <ul>
+                                                    <li><svg class="uitk-icon uitk-icon-medium uitk-icon-default-theme" aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M9.82 11.64h.01a4.15 4.15 0 014.36 0h.01c.76.46 1.54.47 2.29 0l.41-.23L10.48 5C8.93 3.45 7.5 2.99 5 3v2.5c1.82-.01 2.89.39 4 1.5l1 1-3.25 3.25c.27.1.52.25.77.39.75.47 1.55.47 2.3 0z"></path><path fill-rule="evenodd" d="M21.98 16.5c-1.1 0-1.71-.37-2.16-.64h-.01a2.08 2.08 0 00-2.29 0 4.13 4.13 0 01-4.36 0h-.01a2.08 2.08 0 00-2.29 0 4.13 4.13 0 01-4.36 0h-.01a2.08 2.08 0 00-2.29 0l-.03.02c-.47.27-1.08.62-2.17.62v-2c.56 0 .78-.13 1.15-.36a4.13 4.13 0 014.36 0h.01c.76.46 1.54.47 2.29 0a4.13 4.13 0 014.36 0h.01c.76.46 1.54.47 2.29 0a4.13 4.13 0 014.36 0h.01c.36.22.6.36 1.14.36v2z" clip-rule="evenodd"></path><path d="M19.82 20.36c.45.27 1.07.64 2.18.64v-2a1.8 1.8 0 01-1.15-.36 4.13 4.13 0 00-4.36 0c-.75.47-1.53.46-2.29 0h-.01a4.15 4.15 0 00-4.36 0h-.01c-.75.47-1.55.47-2.3 0a4.15 4.15 0 00-4.36 0h-.01A1.8 1.8 0 012 19v2c1.1 0 1.72-.36 2.18-.63l.01-.01a2.07 2.07 0 012.3 0c1.39.83 2.97.82 4.36 0h.01a2.08 2.08 0 012.29 0h.01c1.38.83 2.95.83 4.34.01l.02-.01a2.08 2.08 0 012.29 0h.01zM19 5.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path></svg> <em>수영장</em></li>
+                                                    <li><svg class="uitk-icon uitk-icon-medium uitk-icon-default-theme" aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill-rule="evenodd" d="M1 9l2 2a12.73 12.73 0 0118 0l2-2A15.57 15.57 0 001 9zm8 8l3 3 3-3a4.24 4.24 0 00-6 0zm-2-2l-2-2a9.91 9.91 0 0114 0l-2 2a7.07 7.07 0 00-10 0z" clip-rule="evenodd"></path></svg><em>무료WiFi</em></li>
+                                                </ul>
+                                            </div>
+                                            <div class="notice">
+                                                <div class="refund">전액 환불 가능</div>
+                                                <div class="nowRez">지금 예약하고 현장 결제</div>
+                                                <div class="grade"><i>4.3</i>/5 훌룽함</div>
+                                                <div class="review">(이용후기 308개)</div>
+                                            </div>
+                                        </div>
+                                        <div class="info-right">
+                                            <div class="hotelPrice">₩128,864~</div>
+                                            <span class="stan2">객실당 1박 기준</span>
+                                            <span class="tax">세금 및 수수료 불포함</span>
+                                            <button class="detailBtn">상세보기</button>    
+                                        </div>
+                                        
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- hotel4 -->
+                        </ul>
+                    </div>
+                    <!-- hotel-inner -->
+                </section>
+                <!-- hotelList -->
+
+                <!--headCountModal-->
+                <div id="headCountModal" data-backdrop="static">
+                    <div class="modal-bg">
+                    <div class="modal-cont">
+                        <div class="modal-view">
+                            <div class="view-header"><button class="closeBtn">x</button>인원수</div>
+                            
+                            <div class="headCountWrap">
+                                <div class="roomCountInner">
+                                    <p>객실<i>1</i></p>
+                                    <div class="adultInner">
+                                        <span class="adult">성인</span>
+                                        <div class="adultCountWrap">
+                                            <button class="subBtn">-</button>
+                                            <div class="num">1</div>
+                                            <button class="addBtn">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="childInner">
+                                        <span class="child">아동</span>
+                                        <div class="childCountWrap">
+                                            <button class="subBtn">-</button>
+                                            <div class="num">0</div>
+                                            <button class="addBtn">+</button>
+                                        </div>
+                                    </div>    
+                                </div>
+
+                                <div class="roomCountInner">
+                                    <p>객실<i>1</i></p>
+                                    <div class="adultInner">
+                                        <span class="adult">성인</span>
+                                        <div class="adultCountWrap">
+                                            <button class="subBtn">-</button>
+                                            <div class="num">1</div>
+                                            <button class="addBtn">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="childInner">
+                                        <span class="child">아동</span>
+                                        <div class="childCountWrap">
+                                            <button class="subBtn">-</button>
+                                            <div class="num">0</div>
+                                            <button class="addBtn">+</button>
+                                        </div>
+                                    </div>    
+                                </div>
+
+                                <div class="roomBtnWrap">
+                                    <button class="roomSubBtn">객실삭제</button>
+                                    <button class="roomAddBtn">객실추가</button>
+                                </div>
+                            </div>
+                            <button class="completeBtn">완료</button>
+                        </div>           
+                    </div>
+                    </div>
+                </div>
+                <!--headCount-->
+            </div>
+            <!--container-->
+        </main>
+        <!--main-->
+
+        <!-- footer -->
+        <footer id="footer">
+            <div class="container">
+                <!--footer-inner-->
+                <div class="footer-inner">
+                    <!-- logo -->
+                    <div class="logo">
+                        <a href="./reserve_index.html"><img src="../public/images/waffle_logo_row.png" alt="와플로고"></a>
+                    </div>
+                    <!-- logo -->
+                    <!--footerMenu-->
+                    <div class="footerMenu">
+                        <ul>
+                            <li><a href="#c">이용약관</a></li>
+                            <li><a href="#c">개인정보 처리방침</a></li>
+                            <li><a href="#c">고객센터</a></li>
+                            <li><a href="#c">©wafflestay</a></li>
+                        </ul>
+                        <address>Copyright © 2022. wafflestay. All rights reserved.</address>
+                    </div>
+                    
+                    <!--footerMenu-->
+
+                    <!--snsWrap-->
+                    <div class="snsWrap">
+                        <ul>
+                            <li><a href="#c"><img src="../public/images/kakao_icon.png" alt="카카오채널"></a></li>
+                            <li><a href="https://blog.naver.com/hellowisekey"><img src="../public/images/blog_icon2.png" alt="블로그"></a></li>
+                            <li><a href="#c"><img src="../public/images/insta_icon.png" alt="인스타그램"></li>
+                        </ul>
+                    </div>
+                    <!--snsWrap-->
+                </div>
+                <!--footer-inner-->
+            </div>
+        </footer>
+        <!-- footer --> 
+    </div>
+    <!-- body inner -->
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../public/js/custom.js"></script>
+    <script src="../public/js/datePicker.js"></script>
+    <script>
+        window.onload = function(){
+            agentCheck();   //호환성 체크
+        }
+
+        //인원수Modal
+        const headCountBtn = document.querySelector(".headCountBtn");
+        const completeBtn = document.querySelector(".completeBtn");
+        const headCountModal = document.querySelector("#headCountModal");
+
+        headCountBtn.addEventListener("click", function(){
+            document.querySelector("#headCountModal").style.display = "block"
+            console.log(".headCountBtn");
+        });
+        
+        document.querySelector(".modal-cont .closeBtn").addEventListener("click", function(){
+            document.querySelector("#headCountModal").style.display = "none"
+        });
+
+        completeBtn.addEventListener("click", function(){
+            headCountModal.style.display = "none"
+        });
+
+
+        //달력 Modal
+        const chkBtn = document.querySelectorAll(".chkBtn");
+        const calendarModal = document.querySelector("#calendarWrap");
+        const confirmBtn = document.querySelector("#calendarWrap .confirmBtn");
+
+        chkBtn.forEach((el)=>{
+            el.addEventListener("click", function(){
+                calendarModal.style.display = "block"
+            })
+        });
+
+        function calendarModalClose(){
+            confirmBtn.addEventListener("click", function(){
+                calendarModal.style.display = "none";
+            });
+        }
+
+        // chkBtn.addEventListener("click", function(){
+        //     calendarModal.style.display = "block";
+        // });
+
+        // submitBtn.addEventListener("click", function(){
+        //     calendarModal.style.display = "none";
+        // });
+        
+
+        /*외부 영역 클릭시 모달 닫기*/
+        $(document).mouseup(function(e){
+            if($("#calendarWrap").has(e.target).length === 0) {
+                $("#calendarWrap").hide();
+            }
+        });
+
+        calendarModalClose();
+    </script>
+</body>
+
+</html>
